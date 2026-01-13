@@ -1,6 +1,11 @@
 package com.example.walktracker;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/walk")
@@ -18,4 +23,11 @@ public class WalkController {
         emailService.sendEmail(request.getWalkStatus());
         return "Status saved: " + request.getWalkStatus();
     }
+    
+    @GetMapping("/")
+    public String home() {
+        return "Daily Walk Tracker Backend is running!";
+}
+
+
 }
