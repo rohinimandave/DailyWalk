@@ -1,18 +1,19 @@
-name: Walk Tracker CI/CD
+name: Walk Tracker CI
 
 on:
   push:
     branches: [ "main" ]
+  pull_request:
 
 jobs:
-  build:
+  backend-build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Java
+      - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
