@@ -1,25 +1,24 @@
-name: Walk Tracker CI
+name: Backend Build
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
+    branches:
+      - main
 
 jobs:
   backend-build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Set up Java 17
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
           distribution: 'temurin'
+          java-version: '17'
 
       - name: Build Spring Boot backend
         run: |
-          cd daily-walk-tracker-backend/walktracker
+          cd walktracker
           mvn clean package -DskipTests
