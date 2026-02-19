@@ -2,21 +2,17 @@ name: Backend Docker Build
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
 
-      - name: Build Spring Boot backend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
         run: |
-          cd walktracker
-          mvn clean package -DskipTests
+          cd daily-walk-tracker-backend/walktracker
+          docker build -t walktracker .
